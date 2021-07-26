@@ -14,7 +14,7 @@ door.addComponent(new Transform({ position: new Vector3(10,0,20)}));
 
 //Define two different materials
 let startPosition = new Vector3(10,0,20);
-let finalPosition = new Vector3(20,0,20);
+let finalPosition = new Vector3(10,4,20);
 
 door.addComponent(
     new OnClick(event => {
