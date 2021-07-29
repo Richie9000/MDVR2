@@ -18,7 +18,7 @@ button.addComponent(new Transform({ position: new Vector3(10,0,20)}));
 engine.addEntity(button);
 
 const button1 = new Entity();
-button1.addComponent(new GLTFShape("models/cube1qbtn.glb"));
+button1.addComponent(new GLTFShape("models/cube1btn.glb"));
 button1.addComponent(new Transform({ position: new Vector3(10,0,20)}));
 engine.addEntity(button1);
 
@@ -48,9 +48,9 @@ button.addComponent(
 button1.addComponent(
   new OnPointerDown(
     (e) => {
-      movePlayerTo({ x: 1, y: 0, z: 1 }, { x: 8, y: 1, z: 8 })
+      movePlayerTo({ x: 8, y: 10, z: 23 }, { x: 8, y: 1, z: 8 })
     },
-    { hoverText: "Move player" }
+    { hoverText: "Cube1" }
   )
 )
 
