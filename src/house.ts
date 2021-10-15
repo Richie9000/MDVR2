@@ -150,14 +150,21 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
           if (value == utils.ToggleState.On) {
             const streamSource = new Entity()
             streamSource.addComponent(
-              new AudioStream(
-                "https://icecast.ravepartyradio.org/ravepartyradio-192.mp3"
-              )
+            new Transform({ position: new Vector3(56, 10, 55) })
             )
-            engine.addEntity(streamSource)
+          let music = new AudioStream(
+      'https://icecast.ravepartyradio.org/ravepartyradio-192.mp3'
+  )
+  streamSource.addComponent(music)
+  
+  engine.addEntity(streamSource)
+
+  music.playing = true
         } else {
-          const streamSource = new Entity()
-          engine.removeEntity(streamSource)
+          let music = new AudioStream(
+            'https://icecast.ravepartyradio.org/ravepartyradio-192.mp3'
+          )
+          music.playing = false
         }
       },
       
