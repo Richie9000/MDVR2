@@ -2,12 +2,14 @@ import * as utils from '@dcl/ecs-scene-utils'
 import { movePlayerTo } from '@decentraland/RestrictedActions'
 
  export function House () {
+  
 
     const house = new Entity();
     house.addComponent(new GLTFShape("models/floor.glb"));
     house.addComponent(new Transform({ position: new Vector3(10,0,20)}));
     engine.addEntity(house);
     
+
     const door = new Entity();
     door.addComponent(new GLTFShape("models/door.glb"));
     door.addComponent(new Transform({ position: new Vector3(10,0,20)}));
@@ -18,7 +20,11 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     btnDoor.addComponent(new Transform({ position: new Vector3(10,0,20)}));
     engine.addEntity(btnDoor);
     
-    
+    const btnMusic = new Entity();
+    btnMusic.addComponent(new GLTFShape("models/btnM.glb"));
+    btnMusic.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(btnMusic);
+
     const btnTcube1 = new Entity();
     btnTcube1.addComponent(new GLTFShape("models/btnTcube1.glb"));
     btnTcube1.addComponent(new Transform({ position: new Vector3(10,0,20)}));
@@ -45,7 +51,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     engine.addEntity(buttonT);
 
     let startPositionT = new Vector3(10,0,20);
-    let finalPositionT = new Vector3(8.5,0,20);
+    let finalPositionT = new Vector3(8.6,0,20);
 
     buttonT.addComponent(
       new utils.ToggleComponent(utils.ToggleState.Off, value => {
@@ -66,7 +72,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
       new OnClick(event => {
         buttonT.getComponent(utils.ToggleComponent).toggle()
       },
-      { hoverText: "O/C" }
+      { hoverText: "Open/Close" }
       )
     )
 
@@ -76,16 +82,16 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     engine.addEntity (doorT);
     
     let startPosition = new Vector3(10,0,20);
-    let finalPosition = new Vector3(7,0,20);
+    let finalPosition = new Vector3(8,0,20);
   
     btnDoor.addComponent(
         new utils.ToggleComponent(utils.ToggleState.Off, value => {
         
             if (value == utils.ToggleState.On) {
                 door.addComponentOrReplace(
-                    new utils.MoveTransformComponent(startPosition, finalPosition, 2)) 
+                    new utils.MoveTransformComponent(startPosition, finalPosition, 1)) 
           } else {
-            door.addComponentOrReplace(new utils.MoveTransformComponent(finalPosition, startPosition, 2)) 
+            door.addComponentOrReplace(new utils.MoveTransformComponent(finalPosition, startPosition, 1)) 
           }
         },
         
@@ -97,7 +103,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
         new OnClick(event => {
           btnDoor.getComponent(utils.ToggleComponent).toggle()
         },
-        { hoverText: "O/C" }
+        { hoverText: "Open/Close" }
         )
       )
      
@@ -137,5 +143,33 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
         { hoverText: "Living Room" }
       )
     )
+    
+    btnMusic.addComponent(
+      new utils.ToggleComponent(utils.ToggleState.Off, value => {
+      
+          if (value == utils.ToggleState.On) {
+            const streamSource = new Entity()
+            streamSource.addComponent(
+              new AudioStream(
+                "https://icecast.ravepartyradio.org/ravepartyradio-192.mp3"
+              )
+            )
+            engine.addEntity(streamSource)
+        } else {
+          const streamSource = new Entity()
+          engine.removeEntity(streamSource)
+        }
+      },
+      
+      )
+    )
+    
+    //listen for click on the box and toggle it's state
+    btnMusic.addComponent(
+      new OnClick(event => {
+        btnMusic.getComponent(utils.ToggleComponent).toggle()
+      },
+      { hoverText: "Turn music on/off" }
+      )
+    )
 }
-
