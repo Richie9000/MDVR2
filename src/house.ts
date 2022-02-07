@@ -2,7 +2,6 @@ import * as utils from '@dcl/ecs-scene-utils'
 import { movePlayerTo } from '@decentraland/RestrictedActions'
 
  export function House () {
-  
 
     const house = new Entity();
     house.addComponent(new GLTFShape("models/floor.glb"));
@@ -10,57 +9,62 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     engine.addEntity(house);
     
 
-    const door = new Entity();
-    door.addComponent(new GLTFShape("models/door.glb"));
-    door.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(door);
+    const doorEntrance = new Entity();
+    doorEntrance.addComponent(new GLTFShape("models/doorEntrance.glb"));
+    doorEntrance.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(doorEntrance);
     
-    const btnDoor = new Entity();
-    btnDoor.addComponent(new GLTFShape("models/btnDoor.glb"));
-    btnDoor.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(btnDoor);
+    const buttonEntranceDoor = new Entity();
+    buttonEntranceDoor.addComponent(new GLTFShape("models/buttonEntranceDoor.glb"));
+    buttonEntranceDoor.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonEntranceDoor);
     
-    const btnMusic = new Entity();
-    btnMusic.addComponent(new GLTFShape("models/btnM.glb"));
-    btnMusic.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(btnMusic);
+    const buttonMusic = new Entity();
+    buttonMusic.addComponent(new GLTFShape("models/buttonMusic.glb"));
+    buttonMusic.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonMusic);
 
-    const btnTcube1 = new Entity();
-    btnTcube1.addComponent(new GLTFShape("models/btnTcube1.glb"));
-    btnTcube1.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(btnTcube1);
+    const buttonTeleportCube1ToCube2 = new Entity();
+    buttonTeleportCube1ToCube2.addComponent(new GLTFShape("models/buttonTeleportCube1ToCube2.glb"));
+    buttonTeleportCube1ToCube2.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonTeleportCube1ToCube2);
     
-    const btnTcube2 = new Entity();
-    btnTcube2.addComponent(new GLTFShape("models/btnTcube2.glb"));
-    btnTcube2.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(btnTcube2);
+    const buttonTeleportCube1ToCube3 = new Entity();
+    buttonTeleportCube1ToCube3.addComponent(new GLTFShape("models/buttonTeleportCube1ToCube3.glb"));
+    buttonTeleportCube1ToCube3.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonTeleportCube1ToCube3);
     
-    const button3 = new Entity();
-    button3.addComponent(new GLTFShape("models/btncube2.glb"));
-    button3.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(button3);
+    const buttonTeleportCube2ToLiving = new Entity();
+    buttonTeleportCube2ToLiving.addComponent(new GLTFShape("models/buttonTeleportCube2ToLiving.glb"));
+    buttonTeleportCube2ToLiving.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonTeleportCube2ToLiving);
     
-    const btncube3 = new Entity();
-    btncube3.addComponent(new GLTFShape("models/btncube3.glb"));
-    btncube3.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(btncube3);
+    const buttonTeleportCube3ToLiving = new Entity();
+    buttonTeleportCube3ToLiving.addComponent(new GLTFShape("models/buttonTeleportCube3ToLiving.glb"));
+    buttonTeleportCube3ToLiving.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonTeleportCube3ToLiving);
     
-    const buttonT = new Entity();
-    buttonT.addComponent(new GLTFShape("models/buttonT.glb"));
-    buttonT.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(buttonT);
+    const buttonDoorTeletransport = new Entity();
+    buttonDoorTeletransport.addComponent(new GLTFShape("models/buttonDoorTeletransport.glb"));
+    buttonDoorTeletransport.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(buttonDoorTeletransport);
+
+    const doorTeletransport = new Entity();
+    doorTeletransport.addComponent(new GLTFShape("models/doorTeletransport.glb"));
+    doorTeletransport.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity (doorTeletransport);
 
     let startPositionT = new Vector3(10,0,20);
-    let finalPositionT = new Vector3(8.6,0,20);
+    let finalPositionT = new Vector3(12,0,20);
 
-    buttonT.addComponent(
+    buttonDoorTeletransport.addComponent(
       new utils.ToggleComponent(utils.ToggleState.Off, value => {
       
           if (value == utils.ToggleState.On) {
-              doorT.addComponentOrReplace(
+              doorTeletransport.addComponentOrReplace(
                   new utils.MoveTransformComponent(startPositionT, finalPositionT, 1)) 
         } else {
-          doorT.addComponentOrReplace(new utils.MoveTransformComponent(finalPositionT, startPositionT, 1)) 
+          doorTeletransport.addComponentOrReplace(new utils.MoveTransformComponent(finalPositionT, startPositionT, 1)) 
         }
       },
       
@@ -68,30 +72,26 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     )
     
     //listen for click on the box and toggle it's state
-    buttonT.addComponent(
+    buttonDoorTeletransport.addComponent(
       new OnClick(event => {
-        buttonT.getComponent(utils.ToggleComponent).toggle()
+        buttonDoorTeletransport.getComponent(utils.ToggleComponent).toggle()
       },
       { hoverText: "Open/Close" }
       )
     )
 
-    const doorT = new Entity();
-    doorT.addComponent(new GLTFShape("models/doorT.glb"));
-    doorT.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity (doorT);
     
     let startPosition = new Vector3(10,0,20);
-    let finalPosition = new Vector3(8,0,20);
+    let finalPosition = new Vector3(12,0,20);
   
-    btnDoor.addComponent(
+    buttonEntranceDoor.addComponent(
         new utils.ToggleComponent(utils.ToggleState.Off, value => {
         
             if (value == utils.ToggleState.On) {
-                door.addComponentOrReplace(
+                doorEntrance.addComponentOrReplace(
                     new utils.MoveTransformComponent(startPosition, finalPosition, 1)) 
           } else {
-            door.addComponentOrReplace(new utils.MoveTransformComponent(finalPosition, startPosition, 1)) 
+            doorEntrance.addComponentOrReplace(new utils.MoveTransformComponent(finalPosition, startPosition, 1)) 
           }
         },
         
@@ -99,52 +99,53 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
       )
       
       //listen for click on the box and toggle it's state
-      btnDoor.addComponent(
+      buttonEntranceDoor.addComponent(
         new OnClick(event => {
-          btnDoor.getComponent(utils.ToggleComponent).toggle()
+          buttonEntranceDoor.getComponent(utils.ToggleComponent).toggle()
         },
         { hoverText: "Open/Close" }
         )
       )
      
      
-    btnTcube1.addComponent(
+    buttonTeleportCube1ToCube2.addComponent(
       new OnPointerDown(
         (e) => {
-          movePlayerTo({ x: 8, y: 10, z: 23 }, { x: 8, y: 1, z: 8 })
+          movePlayerTo({ x: 19, y: 12, z: 21 }, { x: 18, y: 20, z: 18 })
         },
         { hoverText: "Room 1" }
       )
     )
     
-    btnTcube2.addComponent(
+    buttonTeleportCube1ToCube3.addComponent(
       new OnPointerDown(
         (e) => {
-          movePlayerTo({ x:8, y: 19, z: 19 }, { x: 8, y: 1, z: 8 })
+          movePlayerTo({ x:18, y: 19, z: 23 }, { x: 8, y: 1, z: 8 })
         },
         { hoverText: "Room 2" }
       )
     )
     
-    button3.addComponent(
+    buttonTeleportCube2ToLiving.addComponent(
       new OnPointerDown(
-        (e) => {
-          movePlayerTo({ x:5, y: 3, z: 20 }, { x: 10, y: 0, z: 20 })
+        function (e) {
+          movePlayerTo({ x: 20, y: 5, z: 24 }, { x: 10, y: 0, z: 10 });
         },
         { hoverText: "Living Room" }
       )
     )
     
-    btncube3.addComponent(
+    buttonTeleportCube3ToLiving.addComponent(
       new OnPointerDown(
-        (e) => {
-          movePlayerTo({ x:5, y: 3, z: 20}, { x: 10, y: 0, z: 20 })
+        function (e) {
+          movePlayerTo({ x: 20, y: 5, z: 24 }, { x: 10, y: 0, z: 10 });
         },
         { hoverText: "Living Room" }
       )
     )
+
     
-    btnMusic.addComponent(
+    buttonMusic.addComponent(
       new utils.ToggleComponent(utils.ToggleState.Off, value => {
       
           if (value == utils.ToggleState.On) {
@@ -172,9 +173,9 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     )
     
     //listen for click on the box and toggle it's state
-    btnMusic.addComponent(
+    buttonMusic.addComponent(
       new OnClick(event => {
-        btnMusic.getComponent(utils.ToggleComponent).toggle()
+        buttonMusic.getComponent(utils.ToggleComponent).toggle()
       },
       { hoverText: "Turn music on/off" }
       )
