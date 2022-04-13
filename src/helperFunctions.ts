@@ -1,3 +1,5 @@
+import { movePlayerTo } from "@decentraland/RestrictedActions"
+
 export function splitTextIntoLines(
     text: string,
     maxLenght: number,
@@ -40,3 +42,6 @@ export function splitTextIntoLines(
   
     return finalText
   }
+
+ 
+  

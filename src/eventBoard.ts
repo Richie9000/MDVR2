@@ -118,6 +118,11 @@ export async function createEventsBoard(position: TransformConstructorArgs) {
   if (events.length > 1) {
     engine.addSystem(new SwitchEventSystem(events, 4))
   }
+
+  function newFunction() {
+    const newLocal: never[] = []
+    let events = newLocal
+  }
 }
 
 let bannerSwitcher = new Entity()

@@ -8,6 +8,10 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     house.addComponent(new Transform({ position: new Vector3(10,0,20)}));
     engine.addEntity(house);
     
+    const firstButton = new Entity();
+    firstButton.addComponent(new GLTFShape("models/buttonFirst.glb"));
+    firstButton.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(firstButton);
 
     const doorEntrance = new Entity();
     doorEntrance.addComponent(new GLTFShape("models/doorEntrance.glb"));
@@ -180,4 +184,22 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
       { hoverText: "Turn music on/off" }
       )
     )
+    
+     firstButton.addComponent(
+          new OnPointerDown(
+            (e) => {
+              movePlayerTo({ x:18, y: 19, z: 23 }, { x: 8, y: 1, z: 8 })
+            },
+            { hoverText: "Enter" }
+          )
+        )
+
+       firstButton.addComponent(
+          new Transform({
+          
+            rotation: new Quaternion(1, 1, 7, 1)
+         
+          })
+        )
+
 }
