@@ -1,13 +1,17 @@
 import * as utils from '@dcl/ecs-scene-utils'
 import { movePlayerTo } from '@decentraland/RestrictedActions'
+import { Wall } from './wall';
+
 
  export function House () {
 
-    const house = new Entity();
-    house.addComponent(new GLTFShape("models/floor.glb"));
-    house.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(house);
-    
+   const house = new Entity();
+   house.addComponent(new GLTFShape("models/floor.glb"));
+   house.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+   engine.addEntity(house);
+
+   Wall()
+   
     const firstButton = new Entity();
     firstButton.addComponent(new GLTFShape("models/buttonFirst.glb"));
     firstButton.addComponent(new Transform({ position: new Vector3(10,0,20)}));

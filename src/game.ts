@@ -1,5 +1,6 @@
 import { displayEvent, createEventsBoard } from './eventBoard'
 import { House } from './house'
+import { Wall } from './wall';
 
 createEventsBoard({
   position: new Vector3(25,17.5,20),
