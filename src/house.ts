@@ -1,6 +1,5 @@
 import * as utils from '@dcl/ecs-scene-utils'
 import { movePlayerTo } from '@decentraland/RestrictedActions'
-import { Wall } from './wall';
 
 
  export function House () {
@@ -10,7 +9,6 @@ import { Wall } from './wall';
    house.addComponent(new Transform({ position: new Vector3(10,0,20)}));
    engine.addEntity(house);
 
-   Wall()
    
     const firstButton = new Entity();
     firstButton.addComponent(new GLTFShape("models/buttonFirst.glb"));
@@ -119,16 +117,16 @@ import { Wall } from './wall';
     buttonTeleportCube1ToCube2.addComponent(
       new OnPointerDown(
         (e) => {
-          movePlayerTo({ x: 19, y: 12, z: 21 }, { x: 18, y: 20, z: 18 })
+          movePlayerTo({ x: 19, y: 10, z: 21 }, { x: 18, y: 20, z: 17 })
         },
-        { hoverText: "Room 1" }
+        { hoverText: "Lounge" }
       )
     )
     
     buttonTeleportCube1ToCube3.addComponent(
       new OnPointerDown(
         (e) => {
-          movePlayerTo({ x:18, y: 19, z: 23 }, { x: 8, y: 1, z: 8 })
+          movePlayerTo({ x:18, y: 5, z: 23 }, { x: 8, y: 1, z: 8 })
         },
         { hoverText: "Room 2" }
       )
@@ -137,18 +135,18 @@ import { Wall } from './wall';
     buttonTeleportCube2ToLiving.addComponent(
       new OnPointerDown(
         function (e) {
-          movePlayerTo({ x: 20, y: 5, z: 24 }, { x: 10, y: 0, z: 10 });
+          movePlayerTo({ x: 20, y: 15, z: 24 }, { x: 10, y: 0, z: 10 });
         },
-        { hoverText: "Living Room" }
+        { hoverText: "Top Floor" }
       )
     )
     
     buttonTeleportCube3ToLiving.addComponent(
       new OnPointerDown(
         function (e) {
-          movePlayerTo({ x: 20, y: 5, z: 24 }, { x: 10, y: 0, z: 10 });
+          movePlayerTo({ x: 20, y: 55, z: 24 }, { x: 10, y: 0, z: 10 });
         },
-        { hoverText: "Living Room" }
+        { hoverText: "?" }
       )
     )
 
