@@ -3,7 +3,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
 
 
  export function House () {
-
+//new
    const house = new Entity();
    house.addComponent(new GLTFShape("models/floor.glb"));
    house.addComponent(new Transform({ position: new Vector3(10,0,20)}));
