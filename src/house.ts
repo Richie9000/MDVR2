@@ -14,16 +14,8 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     firstButton.addComponent(new GLTFShape("models/buttonFirst.glb"));
     firstButton.addComponent(new Transform({ position: new Vector3(10,0,20)}));
     engine.addEntity(firstButton);
-
-    const doorEntrance = new Entity();
-    doorEntrance.addComponent(new GLTFShape("models/doorEntrance.glb"));
-    doorEntrance.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(doorEntrance);
     
-    const buttonEntranceDoor = new Entity();
-    buttonEntranceDoor.addComponent(new GLTFShape("models/buttonEntranceDoor.glb"));
-    buttonEntranceDoor.addComponent(new Transform({ position: new Vector3(10,0,20)}));
-    engine.addEntity(buttonEntranceDoor);
+
     
     const buttonMusic = new Entity();
     buttonMusic.addComponent(new GLTFShape("models/buttonMusic.glb"));
@@ -86,32 +78,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
       )
     )
 
-    
-    let startPosition = new Vector3(10,0,20);
-    let finalPosition = new Vector3(12,0,20);
   
-    buttonEntranceDoor.addComponent(
-        new utils.ToggleComponent(utils.ToggleState.Off, value => {
-        
-            if (value == utils.ToggleState.On) {
-                doorEntrance.addComponentOrReplace(
-                    new utils.MoveTransformComponent(startPosition, finalPosition, 1)) 
-          } else {
-            doorEntrance.addComponentOrReplace(new utils.MoveTransformComponent(finalPosition, startPosition, 1)) 
-          }
-        },
-        
-        )
-      )
-      
-      //listen for click on the box and toggle it's state
-      buttonEntranceDoor.addComponent(
-        new OnClick(event => {
-          buttonEntranceDoor.getComponent(utils.ToggleComponent).toggle()
-        },
-        { hoverText: "Open/Close" }
-        )
-      )
      
      
     buttonTeleportCube1ToCube2.addComponent(
@@ -190,7 +157,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
      firstButton.addComponent(
           new OnPointerDown(
             (e) => {
-              movePlayerTo({ x:18, y: 19, z: 23 }, { x: 8, y: 1, z: 8 })
+              movePlayerTo({ x:22, y: 18, z: 23 }, { x: 8, y: 1, z: 8 })
             },
             { hoverText: "Enter" }
           )
