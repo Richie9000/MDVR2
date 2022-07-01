@@ -20,6 +20,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     const buttonMusic = new Entity();
     buttonMusic.addComponent(new GLTFShape("models/buttonMusic.glb"));
     buttonMusic.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+  
     engine.addEntity(buttonMusic);
 
     const buttonTeleportCube1ToCube2 = new Entity();
