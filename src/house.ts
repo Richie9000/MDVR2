@@ -47,13 +47,31 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     buttonDoorTeletransport.addComponent(new Transform({ position: new Vector3(10,0,20)}));
     engine.addEntity(buttonDoorTeletransport);
 
+    const littleDoor = new Entity();
+    littleDoor.addComponent(new GLTFShape("models/littledoor.glb"));
+    littleDoor.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(littleDoor);
+    
+    const littleDoorBtn = new Entity();
+    littleDoorBtn.addComponent(new GLTFShape("models/btnLittleDoor.glb"));
+    littleDoorBtn.addComponent(new Transform({ position: new Vector3(10,0,20)}));
+    engine.addEntity(littleDoorBtn);
+
+
+
+    const stylus = new Entity();
+    stylus.addComponent(new GLTFShape("models/stylus.glb"))
+    stylus.addComponent(new Transform({ position: new Vector3(10,0,20)}))
+    engine.addEntity(stylus)
+
     const doorTeletransport = new Entity();
     doorTeletransport.addComponent(new GLTFShape("models/doorTeletransport.glb"));
     doorTeletransport.addComponent(new Transform({ position: new Vector3(10,0,20)}));
     engine.addEntity (doorTeletransport);
 
     let startPositionT = new Vector3(10,0,20);
-    let finalPositionT = new Vector3(12,0,20);
+    let finalPositionT = new Vector3(10,0,22);
+    let finalPositionLD = new Vector3(10,0,18);
 
     buttonDoorTeletransport.addComponent(
       new utils.ToggleComponent(utils.ToggleState.Off, value => {
@@ -73,6 +91,29 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     buttonDoorTeletransport.addComponent(
       new OnClick(event => {
         buttonDoorTeletransport.getComponent(utils.ToggleComponent).toggle()
+      },
+      { hoverText: "Open/Close" }
+      )
+    )
+
+    littleDoorBtn.addComponent(
+      new utils.ToggleComponent(utils.ToggleState.Off, value => {
+      
+          if (value == utils.ToggleState.On) {
+              littleDoor.addComponentOrReplace(
+                  new utils.MoveTransformComponent(startPositionT, finalPositionLD, 1)) 
+        } else {
+          littleDoor.addComponentOrReplace(new utils.MoveTransformComponent(finalPositionLD, startPositionT, 1)) 
+        }
+      },
+      
+      )
+    )
+    
+    //listen for click on the box and toggle it's state
+    littleDoorBtn.addComponent(
+      new OnClick(event => {
+        littleDoorBtn.getComponent(utils.ToggleComponent).toggle()
       },
       { hoverText: "Open/Close" }
       )
@@ -118,28 +159,21 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     )
 
     
+    const streamSource = new Entity()
+    streamSource.addComponent(new AudioStream('https://icecast.ravepartyradio.org/ravepartyradio-192.mp3'))
+    engine.addEntity(streamSource)
     buttonMusic.addComponent(
       new utils.ToggleComponent(utils.ToggleState.Off, value => {
       
-          if (value == utils.ToggleState.On) {
-            const streamSource = new Entity()
-            streamSource.addComponent(
-            new Transform({ position: new Vector3(56, 10, 55) })
-            )
-          let music = new AudioStream(
-      'https://icecast.ravepartyradio.org/ravepartyradio-192.mp3'
-  )
-  streamSource.addComponent(music)
-  
-  engine.addEntity(streamSource)
+     
 
-  music.playing = true
+        if (value == utils.ToggleState.On) {
+          streamSource.getComponent(AudioStream).playing = true
         } else {
-          let music = new AudioStream(
-            'https://icecast.ravepartyradio.org/ravepartyradio-192.mp3'
-          )
-          music.playing = false
+            streamSource.getComponent(AudioStream).playing = false
+          
         }
+
       },
       
       )
