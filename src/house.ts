@@ -126,7 +126,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     buttonTeleportCube1ToCube2.addComponent(
       new OnPointerDown(
         (e) => {
-          movePlayerTo({ x: 19, y: 10, z: 21 }, { x: 18, y: 20, z: 17 })
+          movePlayerTo({ x: 12, y: 10, z: 21 }, { x: 18, y: 22, z: 17 })
         },
         { hoverText: "Lounge" }
       )
