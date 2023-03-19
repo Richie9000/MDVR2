@@ -3,5 +3,3 @@ npm-debug.log
 .DS_Store
 /*.env
 bin
-node_modules
-npm-debug.log

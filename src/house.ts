@@ -75,7 +75,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     let finalPositionLD = new Vector3(10,0,18);
 
     buttonDoorTeletransport.addComponent(
-      new utils.ToggleComponent(utils.ToggleState.Off, value => {
+      new utils.ToggleComponent(utils.ToggleState.Off, (value: any) => {
       
           if (value == utils.ToggleState.On) {
               doorTeletransport.addComponentOrReplace(
@@ -98,7 +98,7 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
     )
 
     littleDoorBtn.addComponent(
-      new utils.ToggleComponent(utils.ToggleState.Off, value => {
+      new utils.ToggleComponent(utils.ToggleState.Off, (value: any) => {
       
           if (value == utils.ToggleState.On) {
               littleDoor.addComponentOrReplace(
